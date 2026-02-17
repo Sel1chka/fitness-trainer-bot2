@@ -11,7 +11,7 @@ from telegram.ext import (
 )
 from programs import TRAINING_PROGRAMS, get_program_by_goal
 
-# Настройка логирования
+# Настройка логирования - ИСПРАВЛЕНО
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
@@ -23,14 +23,14 @@ ASK_GOAL, ASK_LEVEL = range(2)
 # Словари для соответствия русских названий ключам
 GOALS = {
     "Сжигание жира": "weight_loss",
-    "Набор массы": "muscle_gain",
+    "Набор массы": "muscle_gain", 
     "Сила": "strength",
     "Выносливость": "endurance"
 }
 
 LEVELS = {
     "Новичок": "beginner",
-    "Средний": "intermediate",
+    "Средний": "intermediate", 
     "Продвинутый": "advanced"
 }
 
@@ -117,7 +117,8 @@ def main():
         entry_points=[CommandHandler('create', create)],
         states={
             ASK_GOAL: [MessageHandler(filters.TEXT & ~filters.COMMAND, handle_goal)],
-            ASK_LEVEL: [MessageHandler(filters.TEXT & ~filters.COMMAND, handle_level)],},
+            ASK_LEVEL: [MessageHandler(filters.TEXT & ~filters.COMMAND, handle_level)],
+        },
         fallbacks=[CommandHandler('cancel', cancel)]
     )
     
